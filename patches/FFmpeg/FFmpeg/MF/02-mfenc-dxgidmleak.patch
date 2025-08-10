@@ -1,0 +1,27 @@
+From 5b1d915a423d466b8bc69a5103214a8bdb7cfa26 Mon Sep 17 00:00:00 2001
+From: Cameron Gutman <aicommander@gmail.com>
+Date: Sun, 10 Aug 2025 15:31:04 -0500
+Subject: [PATCH] avcodec/mfenc: fix memory leak with D3D11 input surfaces
+
+Signed-off-by: Cameron Gutman <aicommander@gmail.com>
+---
+ libavcodec/mfenc.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/libavcodec/mfenc.c b/libavcodec/mfenc.c
+index 30531fe3e8..949ee684e4 100644
+--- a/libavcodec/mfenc.c
++++ b/libavcodec/mfenc.c
+@@ -1356,6 +1356,9 @@ static int mf_close(AVCodecContext *avctx)
+     if (c->async_events)
+         IMFMediaEventGenerator_Release(c->async_events);
+ 
++    if (c->dxgiManager)
++        IMFDXGIDeviceManager_Release(c->dxgiManager);
++
+ #if !HAVE_UWP
+     if (c->library)
+         ff_free_mf(&c->functions, &c->mft);
+-- 
+2.50.1.windows.1
+
