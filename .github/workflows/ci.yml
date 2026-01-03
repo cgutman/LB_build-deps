@@ -456,6 +456,10 @@ jobs:
 
             # create symlink for shebang bash compatibility
             ln -s /usr/local/bin/bash /bin/bash
+
+            # Symlink libva's autotools to avoid it from running
+            ln -s /usr/bin/true /usr/local/bin/automake-1.16
+            ln -s /usr/bin/true /usr/local/bin/aclocal-1.16
           release: ${{ matrix.bsd_release }}
           run: |
             git config --global --add safe.directory "*"

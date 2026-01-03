@@ -26,8 +26,8 @@ CPMDeclarePackage(Boost
 # libva
 CPMDeclarePackage(libva
         NAME libva
-        VERSION 2.22.0
-        GIT_REPOSITORY https://github.com/intel/libva.git
-        GIT_TAG 2.22.0
+        VERSION 2.23.0
+        URL https://github.com/intel/libva/releases/download/2.23.0/libva-2.23.0.tar.bz2
+        URL_HASH SHA256=9ac190a87017bfd49743248f5df7cf3b18a99a9962175caf6bbe3f1ea41b6dbb
         DOWNLOAD_ONLY YES
 )
